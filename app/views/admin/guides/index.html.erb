@@ -1,0 +1,59 @@
+<div class="container">
+	<h2>Lista de temas</h2>
+	<br>
+	<div class="row">
+		<div class="col-md-12">
+			<div class="card">
+			  <div class="card-header">
+			    <%= link_to "<i class='fas fa-plus'></i> Agregar".html_safe, new_admin_guide_path, class: "btn btn-raised btn-primary btn-sm float-right ", data: { toggle: "modal", target: "#modal-new" }, remote: true %>
+			    Temas registrados (<%= @guides.size %>)
+			  </div>
+			  <div class="card-body">
+					<% if @guides.size > 0 %>
+					<div class="table-responsive">
+						<table class="table table-sm table-hover">
+						  <thead>
+						    <tr>
+						    	<th></th>
+						      <th>Nombre</th>
+						      <th>Secciones</th>
+						      <th>Categoria</th>
+						      <th>Orden</th>
+						      <th></th>
+						    </tr>
+						  </thead>
+						  <tbody>
+						  	<% @guides.each do |guide| %>
+									<tr>
+										<td>
+											<%unless guide.image.blank? %>
+												<%= image_tag guide.image.url, class: "img-fluid  mx-auto d-block", width: "55px", height: "55px" %>
+											<%end%>		
+										</td>
+										<td><%= guide.name %></td>
+										<td><%= guide.sections.size %></td>
+										<td><%= guide.category.name if guide.category %></td>
+										<td><%= guide.order %></td>
+										<td>
+											<div class="btn-group" role="group">
+											<%= link_to "<i class='fas fa-bars'></i> Secciones".html_safe, admin_guide_path(guide), class: "btn btn-info btn-sm", data: { turbolinks: "false" }%><%= link_to "<i class='fas fa-edit'></i>".html_safe, edit_admin_guide_path(guide), remote: true, class: "btn btn-warning btn-sm"%><%= link_to "<i class='fas fa-trash'></i>".html_safe, admin_guide_path(guide), method: :delete, data: {:confirm => "¿Esta seguro de eliminar?" } , class: "btn btn-danger btn-sm"%>
+											</div>
+										</td>
+									</tr>
+						  	<% end %>
+						  </tbody>
+						</table>
+					</div>
+					<%= will_paginate @guides, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
+					<% else %>
+						<div class="alert alert-warning text-center" role="alert">
+						  <i class="fas fa-exclamation-circle"></i> No existe ningún registro.
+						</div>
+					<% end %>
+			    
+			  </div>
+			</div>
+		</div>
+	</div>
+</div>
+<div id="modal-guide"></div>

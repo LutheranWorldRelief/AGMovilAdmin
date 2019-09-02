@@ -1,0 +1,53 @@
+<div class="container">
+	<h2>Lista de Categorias</h2>
+	<br>
+	<div class="row">
+		<div class="col-md-12">
+			<div class="card">
+			  <div class="card-header">
+			    <%= link_to "<i class='fas fa-plus'></i> Agregar".html_safe, new_admin_category_path, class: "btn btn-raised btn-primary btn-sm float-right ", data: { toggle: "modal", target: "#modal-new" }, remote: true %>
+			    Categorias registradas (<%= @categories.size %>)
+			  </div>
+			  <div class="card-body">
+					<% if @categories.size > 0 %>
+					<div class="table-responsive">
+						<table class="table table-sm table-hover">
+						  <thead>
+						    <tr>
+						      <th></th>
+						      <th>Nombre</th>
+						      <th>Descripción</th>
+						      <th>Temas asignados</th>
+						      <th></th>
+						    </tr>
+						  </thead>
+						  <tbody>
+						  	<% @categories.each do |category| %>
+									<tr>
+										<td><%= image_tag category.image.url.nil? ? "" : category.image.url, class: "img-fluid mx-auto d-block", width: "55px", height: "55px"%></td>
+										<td><%= category.name %></td>
+										<td><%= category.description %></td>
+										<td><%= category.guides.size %></td>
+										<td>
+											<div class="btn-group" role="group">
+												<%= link_to "<i class='fas fa-bars'></i> Temas".html_safe, admin_category_path(category), class: "btn btn-info btn-sm"%><%= link_to "<i class='fas fa-edit'></i>".html_safe, edit_admin_category_path(category), remote: true, class: "btn btn-warning btn-sm"%><%= link_to "<i class='fas fa-trash'></i>".html_safe, admin_category_path(category), method: :delete, data: {:confirm => "¿Esta seguro de eliminar?" } , class: "btn btn-danger btn-sm"%>
+											</div>
+										</td>
+									</tr>
+						  	<% end %>
+						  </tbody>
+						</table>
+					</div>
+					<%= will_paginate @categories, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
+					<% else %>
+						<div class="alert alert-warning text-center" role="alert">
+						  <i class="fas fa-exclamation-circle"></i> No existe ningún registro.
+						</div>
+					<% end %>
+			    
+			  </div>
+			</div>
+		</div>
+	</div>
+</div>
+<div id="modal-category"></div>

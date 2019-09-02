@@ -1,0 +1,26 @@
+# == Schema Information
+#
+# Table name: upload_files
+#
+#  id          :bigint(8)        not null, primary key
+#  file_upload :string
+#  order       :integer          default(0)
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#  description :text
+#  name        :string
+#  file_type   :integer
+#  guide_id    :bigint(8)
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  file_upload: MyString
+  order: 1
+  article: one
+
+two:
+  file_upload: MyString
+  order: 1
+  article: two

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>CacaoMovil | Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons">
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css" integrity="sha384-wXznGJNEXNG1NFsbm0ugrLFMQPWswR3lds2VeinahP8N0zJw9VWSopbjv2x7WCvX" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- ---------- TOASTR ----------- -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <%= javascript_include_tag 'admin_dashboard', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag    'admin_dashboard', media: 'all', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <% unless flash.empty? %>
+    <script type="text/javascript">
+        <% flash.each do |f| %>
+        <% type = f[0].to_s.gsub('alert', 'error').gsub('notice', 'info') %>
+         toastr['<%= type %>']('<%= f[1] %>');
+        <% end %>
+    </script>
+   <% end %>
+    <section class="padding-top"></section>
+    <div class="container">
+      <div class="d-flex justify-content-center">
+        <%= yield %>
+      </div>
+    </div>
+    <style>
+      .box{
+        padding: 20px;
+        -webkit-box-shadow: 0px 0px 32px -4px rgba(0,0,0,0.75);
+        -moz-box-shadow: 0px 0px 32px -4px rgba(0,0,0,0.75);
+        box-shadow: 0px 0px 32px -4px rgba(0,0,0,0.75);
+        width: 50%;
+        position: fixed;
+        top: 10%;
+        z-index: 1111;
+        background-color: #fff;
+      }
+      .padding-top{
+        background-color: #f55549;
+        padding: 10%;
+        width: 100%;
+      }
+    </style>
+    <script src="https://unpkg.com/popper.js@1.12.6/dist/umd/popper.js" integrity="sha384-fA23ZRQ3G/J53mElWqVJEGJzU0sTs+SvzG8fXVWP+kJQ1lwFAOkcUOysnlKJC33U" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/bootstrap-material-design@4.1.1/dist/js/bootstrap-material-design.js" integrity="sha384-CauSuKpEqAFajSpkdjv3z9t8E7RlpJ1UP0lKM/+NdtSarroVKu069AlsRPKkFBz9" crossorigin="anonymous"></script>
+    <script>$(document).ready(function() { $('body').bootstrapMaterialDesign(); });</script>
+
+  </body>
+</html>

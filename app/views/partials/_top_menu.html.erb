@@ -1,0 +1,121 @@
+<nav class="nav nav-tabs bg-primary">
+	<ul class="nav justify-content-end">
+	  <li class="nav-item ">
+	    <a class="nav-link active item-1" href="/admin/home"><img src="http://DOMAIN/static/image/logo/vaina-cacao.png" alt="cacao" width="21" height="21"> <b>CacaoMovil</b></a>
+	  </li>
+	  <li class="nav-item">
+	  	<%= link_to "Temática", admin_categories_path, class: "nav-link item-7"%>
+	  </li>
+	  <li class="nav-item">
+	  	<%= link_to "Guias", admin_guides_path, class: "nav-link item-2"%>
+	  </li>
+	  <li class="nav-item">
+	  	<%= link_to "Secciones", admin_sections_path, class: "nav-link item-3"%>
+	  </li>
+	  <li class="nav-item">
+	  	<%= link_to "Articulos", admin_articles_path, class: "nav-link item-4"%>
+	  </li>
+	  <li class="nav-item">
+	  	<%= link_to "Archivos", admin_upload_files_path, class: "nav-link item-5"%>
+	  </li>
+	  <li class="nav-item">
+	  	<%= link_to "Apps", admin_apps_path, class: "nav-link item-6"%>
+	  </li>
+	  <li class="nav-item">
+	  	<%= link_to "Categorias de apps", admin_category_apps_path, class: "nav-link item-8"%>
+	  </li>
+	  <li class="nav-item">
+	  	<div class="btn-group header-pro">
+		    <a class="nav-link dropdown-toggle" href="#" id="ex2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <img src="http://sites.ieee.org/r9-sac/files/2016/04/user.png" alt="user" class="rounded-circle" width="25" height="25"> <%= "#{current_user.names} #{current_user.lastnames}" %></a>
+			  <div class="dropdown-menu dropdown-menu-left" aria-labelledby="ex2">
+			    <%= link_to "Cerrar sesión", destroy_user_session_path, class: "dropdown-item", method: :delete %>
+			  </div>
+	  </div>
+	  </li>
+	</ul>
+</nav>
+<style>
+	.header-pro{
+		margin: -2px 0px !important;
+	}
+	html, body{
+		font-size: 13px;
+	}
+</style>
+<% unless @active_item_2.nil? %>
+<script>
+	$( document ).ready(function() {
+		item_status = <%=@active_item_2%>
+    if( item_status == true){
+    	$(".nav-link").removeClass("active");
+    	$(".item-2").addClass("active");
+    }
+	});
+</script>
+<% end %>
+<% unless @active_item_3.nil? %>
+<script>
+	$( document ).ready(function() {
+		item_status = <%=@active_item_3%>
+    if( item_status == true){
+    	$(".nav-link").removeClass("active");
+    	$(".item-3").addClass("active");
+    }
+	});
+</script>
+<% end %>
+<% unless @active_item_4.nil? %>
+<script>
+	$( document ).ready(function() {
+		item_status = <%=@active_item_4%>
+    if( item_status == true){
+    	$(".nav-link").removeClass("active");
+    	$(".item-4").addClass("active");
+    }
+	});
+</script>
+<% end %>
+<% unless @active_item_5.nil? %>
+<script>
+	$( document ).ready(function() {
+		item_status = <%=@active_item_5%>
+    if( item_status == true){
+    	$(".nav-link").removeClass("active");
+    	$(".item-5").addClass("active");
+    }
+	});
+</script>
+<% end %>
+<% unless @active_item_6.nil? %>
+<script>
+	$( document ).ready(function() {
+		item_status = <%=@active_item_6%>
+    if( item_status == true){
+    	$(".nav-link").removeClass("active");
+    	$(".item-6").addClass("active");
+    }
+	});
+</script>
+<% end %>
+<% unless @active_item_7.nil? %>
+<script>
+	$( document ).ready(function() {
+		item_status = <%=@active_item_7%>
+    if( item_status == true){
+    	$(".nav-link").removeClass("active");
+    	$(".item-7").addClass("active");
+    }
+	});
+</script>
+<% end %>
+<% unless @active_item_8.nil? %>
+<script>
+	$( document ).ready(function() {
+		item_status = <%=@active_item_8%>
+    if( item_status == true){
+    	$(".nav-link").removeClass("active");
+    	$(".item-8").addClass("active");
+    }
+	});
+</script>
+<% end %>

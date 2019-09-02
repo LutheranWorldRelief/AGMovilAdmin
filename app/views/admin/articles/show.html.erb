@@ -1,0 +1,33 @@
+<div class="container">
+	<br>
+	<div class="row">
+		<div class="col-md-12">
+			<%= link_to "<i class='fas fa-arrow-left'></i> Atrás".html_safe, admin_articles_path, class: "btn btn-raised btn-secondary btn-sm float-right " %>
+		</div>
+	</div>
+	<div class="row">
+	  <div class="col-md-6 offset-md-3">
+			<div class="text-center">
+				<h3><%= @article.title %></h3>
+				<hr>
+				<small><i><%= @article.description %></i><br><br></small>
+			</div>
+	  </div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<%= @article.content.html_safe %>
+		</div>
+	</div>
+
+</div>
+<script>
+	$('img').addClass("img-fluid")
+</script>
+<style>
+	.box-download{
+		border-left: 1px dashed #ccc;
+		padding: 10px;
+	}
+</style>
+

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>CacaoMovil | Dashboard</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons">
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css" integrity="sha384-wXznGJNEXNG1NFsbm0ugrLFMQPWswR3lds2VeinahP8N0zJw9VWSopbjv2x7WCvX" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- ---------- TOASTR ----------- -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <%= stylesheet_link_tag    'admin_dashboard', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'admin_dashboard', 'data-turbolinks-track': 'reload' %>
+    <%= yield :script_link %>
+  </head>
+
+  <body>
+    <% unless flash.empty? %>
+    <script type="text/javascript">
+        <% flash.each do |f| %>
+        <% type = f[0].to_s.gsub('alert', 'error').gsub('notice', 'info') %>
+         toastr['<%= type %>']('<%= f[1] %>');
+        <% end %>
+    </script>
+   <% end %>
+    <%= render partial: "partials/menu" %>
+    <div class="container-fluid">
+      <div class="box-content">
+        <%= yield %>
+      </div> 
+    </div>
+    <style>
+      .box-content{
+        padding: 20px;
+        margin-top: 15px;
+        -webkit-box-shadow: 0px 6px 19px -8px rgba(0,0,0,0.75);
+        -moz-box-shadow: 0px 6px 19px -8px rgba(0,0,0,0.75);
+        box-shadow: 0px 6px 19px -8px rgba(0,0,0,0.75);
+      }
+    </style>
+    
+    <script src="https://unpkg.com/popper.js@1.12.6/dist/umd/popper.js" integrity="sha384-fA23ZRQ3G/J53mElWqVJEGJzU0sTs+SvzG8fXVWP+kJQ1lwFAOkcUOysnlKJC33U" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/bootstrap-material-design@4.1.1/dist/js/bootstrap-material-design.js" integrity="sha384-CauSuKpEqAFajSpkdjv3z9t8E7RlpJ1UP0lKM/+NdtSarroVKu069AlsRPKkFBz9" crossorigin="anonymous"></script>
+    <script>$(document).ready(function() { $('body').bootstrapMaterialDesign(); });</script>
+  </body>
+</html>
