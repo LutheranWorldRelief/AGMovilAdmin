@@ -38,7 +38,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 # Gems used general plataform
 
 gem 'simple_form', '~> 4.0', '>= 4.0.1'
-gem 'devise', '~> 4.5'
+gem 'devise', '~> 4.7'
 gem 'jquery-rails', '~> 4.3', '>= 4.3.3'
 gem 'rolify', '~> 5.2'
 gem 'will_paginate', '~> 3.1', '>= 3.1.6'
