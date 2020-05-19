@@ -1,0 +1,40 @@
+<div class="form-group">
+	<%= f.input :players, collection: @ready_customers.map { |e| [e.fullname, e.id] }, label: "Seleccionar a quienes se enviará", input_html: { class: "form-control select2", style: "width: 100%;", multiple: true } %>
+	<div class="see-end">
+		<a href="#" id="fill"><small>Seleccionar a todos (<%= @ready_customers.size %>)</small></a>
+		<a href="#" id="empty" style="display: none"><small>Deseleccionar a todos</small></a>
+	</div>
+</div>
+<script>
+	$(document).ready(function() {
+    $('.select2').select2();
+		$("#fill").click(function(){
+			$("#massive_notification_players option").attr("selected", "selected");
+			$('.select2').select2();
+			$(this).css("display", "none");
+			$("#empty").css("display", "block");
+		});
+		$("#empty").click(function(){
+			$("#massive_notification_players option").removeAttr("selected");
+			$('.select2').select2();
+			$(this).css("display", "none");
+			$("#fill").css("display", "block");
+		})
+		$("#massive_notification_players").change(function(){
+			if($(this).val() == ""){
+				$("#fill").css("display", "block");
+				$("#empty").css("display", "none");
+			}else{
+				$("#fill").css("display", "none");
+				$("#empty").css("display", "block");
+			}
+		})
+		if($("#massive_notification_players").val() == ""){
+			$("#fill").css("display", "block");
+			$("#empty").css("display", "none");
+		}else{
+			$("#fill").css("display", "none");
+			$("#empty").css("display", "block");
+		}
+	});
+</script>

@@ -1,0 +1,78 @@
+<!-- Modal -->
+<div class="modal fade" id="modal-edit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <%= simple_form_for @file, url: admin_upload_file_path(@file), method: :put do |f| %>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Editar archivo</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <%= f.input :name, label: "Nombre", input_html: { class: 'form-control', required: true } %>
+        </div>
+        <div class="form-group">
+          <%= f.input :order, label: "Orden", input_html: { class: 'form-control', required: true } %>
+        </div>
+        <div class="form-group">
+          <%= f.input :guide_id, collection: @guides, label: "Guía", input_html: { class: "form-control" } %>
+        </div>
+        <div class="form-group">
+          <%= f.input :description, label: "Descripción", input_html: { class: "form-control" } %>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        <%= f.button :submit, "Guardar", class: "btn btn-raised btn-success" %>
+      </div>
+    </div>
+  </div>
+        <% end %>
+</div>
+<script>
+  $('#upload_file_file_type').change(function() {
+    if(!$('#upload_file_file_type').val() == ""){
+      $('#file_id').removeClass("block-hidden");
+
+      switch($('#upload_file_file_type').val()) {
+        case 'jpeg':
+            $('#upload_file_file_upload').attr("accept", "image/jpeg");
+            break;
+        case 'png':
+            $('#upload_file_file_upload').attr("accept", "image/png");
+            break;
+        case 'jpg':
+            $('#upload_file_file_upload').attr("accept", "image/jpg");
+            break;
+        case 'docx':
+            $('#upload_file_file_upload').attr("accept", "application/msword");
+            break;
+        case 'wmv':
+            $('#upload_file_file_upload').attr("accept", "video/wmv");
+            break;
+        case 'mp4':
+            $('#upload_file_file_upload').attr("accept", "video/mp4");
+            break;
+        case 'avi':
+            $('#upload_file_file_upload').attr("accept", "video/avi");
+            break;
+        case 'mp3':
+            $('#upload_file_file_upload').attr("accept", "audio/mp3");
+            break;
+        case 'pdf':
+            $('#upload_file_file_upload').attr("accept", "application/pdf");
+            break;
+      }
+
+    }else{
+      $('#file_id').addClass("block-hidden");
+    }
+  });
+</script>
+<style>
+  .block-hidden{
+    display: none;
+  }
+</style>

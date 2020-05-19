@@ -1,0 +1,43 @@
+<div class="container">
+	<h2><%= @category.name%></h2>
+	<p><i><%= @category.description %></i></p>
+	<div class="img-block">
+		<%= image_tag @category.image.url, class: "img-thumbnail mx-auto d-block"%>
+	</div>
+	<br>
+	<div class="row">
+		<div class="col-md-12">
+			<div class="card">
+			  <div class="card-header">
+			    <%= link_to "<i class='fas fa-arrow-left'></i> Atrás".html_safe, admin_categories_path, class: "btn btn-raised btn-secondary btn-sm float-right " %>
+			    Guias registradas en la tematica (<%= @category.guides.size %>)
+			  </div>
+			  <div class="card-body">
+					<% if @category.guides.size > 0 %>
+					<div class="row">
+						<% @category.guides.each do |guide| %>
+						<div class="col-md-3">
+							<div class="card">
+								<div class="card-body">
+									<%= guide.name %>
+								</div>
+							</div>
+						</div>
+							
+						<% end %>
+					</div>
+					<% else %>
+						<div class="alert alert-warning text-center" role="alert">
+						  <i class="fas fa-exclamation-circle"></i> No existe ningún registro.
+						</div>
+					<% end %>
+			  </div>
+			</div>
+		</div>
+	</div>
+</div>
+<style>
+	.img-block{
+		padding: 5px;
+	}
+</style>

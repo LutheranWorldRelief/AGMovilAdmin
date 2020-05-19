@@ -1,0 +1,45 @@
+<div class="container">
+	<h2>Bienvenido <%= "#{ current_user.names } #{ current_user.lastnames }" %>| Dashboard</h2>
+	<br/>
+	<div class="row">
+		<div class="col-md-12">
+			<div class="card">
+			  <div class="card-header">
+			    Usuarios registrados (<%= @users.size %>)
+			  </div>
+			  <div class="card-body">
+					<% if @users.size > 0 %>
+						<table class="table table-sm table-hover">
+						  <thead>
+						    <tr>
+						      <th>Nombres</th>
+						      <th>Apellidos</th>
+						      <th>Correo electrónico</th>
+						      <th>Rol</th>
+						      <th></th>
+						    </tr>
+						  </thead>
+						  <tbody>
+						  	<% @users.each do |user| %>
+									<tr>
+										<td><%= user.names %></td>
+										<td><%= user.lastnames %></td>
+										<td><%= user.email %></td>
+										<td><%= user.roles.first.name %></td>
+										<td><%= link_to "<i class='fas fa-lock'></i>".html_safe, edit_admin_home_path(user), remote: true, class: "btn btn-raised btn-secondary btn-sm"%></td>
+									</tr>
+						  	<% end %>
+						  </tbody>
+						</table>
+					<% else %>
+						<div class="alert alert-warning text-center" role="alert">
+						  <i class="fas fa-exclamation-circle"></i> No existe ningún registro
+						</div>
+					<% end %>
+			    <%#= paginate @users %>
+			  </div>
+			</div>
+		</div>
+	</div>
+</div>
+<div id="modal-user"></div>

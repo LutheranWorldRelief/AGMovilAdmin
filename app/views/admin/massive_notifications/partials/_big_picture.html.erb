@@ -1,0 +1,10 @@
+<% if @massive_notification.big_picture.present? %>
+	<div class="col-md-12">
+		<b>Imagen de fondo</b>
+		<%= link_to destroy_imagen_admin_massive_notification_path(@massive_notification), method: :delete, class: "btn-link", title: "Eliminar imagen" do %>
+			<div class="img-content">
+				<img src="<%= @massive_notification.big_picture.url %>" alt="" class="img-responsive"	>
+			</div>
+		<% end %>
+	</div>
+<% end %>

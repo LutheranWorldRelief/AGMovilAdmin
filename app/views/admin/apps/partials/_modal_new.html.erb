@@ -1,0 +1,41 @@
+<!-- Modal -->
+<div class="modal fade" id="modal-new" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <%= simple_form_for @app, url: admin_apps_path, method: :post do |f| %>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Agregar app</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <%= f.input :category_app_id, label: "Categoria", collection: CategoryApp.all, input_html: { class: 'form-control', required: true } %>
+        </div>
+        <div class="form-group">
+          <%= f.input :name, label: "Nombre", input_html: { class: 'form-control', required: true } %>
+        </div>
+        <div class="form-group">
+          <%= f.input :image, label: "Imagen", input_html: { class: 'form-control-file', required: true } %>
+        </div>
+        <div class="form-group">
+          <%= f.input :app_type, label: "Tipo", collection: App.app_types.keys.map {|type| [type.titleize,type]}, input_html: { class: 'form-control', required: true } %>
+        </div>
+        <div class="radio">
+          <label>
+            <%= f.input :outstanding, label: "Destacado", input_html: { required: true } %>
+          </label>
+        </div>
+        <div class="form-group">
+          <%= f.input :app_url, label: "URL", input_html: { class: 'form-control', required: true } %>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        <%= f.button :submit, "Guardar", class: "btn btn-raised btn-success" %>
+      </div>
+    </div>
+  </div>
+        <% end %>
+</div>

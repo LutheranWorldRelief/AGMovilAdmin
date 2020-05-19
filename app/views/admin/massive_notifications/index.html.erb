@@ -1,0 +1,67 @@
+<div class="container">
+	<section class="content-header">
+	  <h1>
+	    Notificaciones
+	  </h1>
+	</section>
+	<br><br>
+	<div class="row">
+		<%= render partial: "admin/massive_notifications/partials/filter" %>
+		<div class="col-md-9">
+			<div class="box box-solid">
+				<div class="box-header with-border">
+	        <h3 class="box-title"><%= @title %></h3>
+	      </div>
+				<div class="box-body">
+					<% if @massive_notifications.all.size > 0 %>
+					<div class="table-responsive">
+						<table class="table table-hover table-striped">
+							<tbody>
+								<% @massive_notifications.order(updated_at: :desc).each do |mn| %>
+								<tr>
+									<td class="mailbox-subject"><b><%= mn.title %></b> - <%= mn.message %></td>
+									<td>
+										<br>
+										<% if mn.big_picture.present? %>
+											<a tabindex="0" role="button" data-toggle="popover" data-trigger="focus" title="" data-trigger="hover" data-html="true" data-placement="bottom" data-content='<%= image_tag mn.big_picture.url, style:"width:100%", class: "img-responsive"%>'><i class="fa fa-paperclip"></i></a>
+										<% end %>
+									</td>
+									<td>
+
+									</td>
+									<td class="mailbox-date"><%= time_ago_in_words(mn.updated_at) %></td>
+									<td>
+										<div class="btn-group">
+											<% if mn.draft? %>
+												<%= link_to "<i class='fa fa-edit'></i>".html_safe, edit_admin_massive_notification_path(mn), class: "btn btn-info", title: "Configurar" %>
+												<%= link_to "<i class='fa fa-trash'></i>".html_safe, move_trash_admin_massive_notification_path(mn), method: :put, class: "btn btn-warning", title: "Mover a papelera" %>	
+											<% end %>
+											<% if mn.sended? %>
+												<%#= link_to "<i class='fa fa-reply'></i>".html_safe, move_draft_users_massive_notification_path(mn), method: :put, class: "btn btn-info", title: "Enviar como nuevo" %>
+												<%= link_to "<i class='fa fa-trash'></i>".html_safe, move_trash_admin_massive_notification_path(mn), method: :put, class: "btn btn-warning", title: "Mover a papelera" %>	
+											<% end %>
+											<% if mn.trashed? %>
+												<%#= link_to "<i class='fa fa-times'></i>".html_safe, users_massive_notification_path(mn), data: { confirm: "Esta seguro de eliminar?" }, method: :delete, class: "btn btn-danger", title: "Eliminar" %>
+											<% end %>
+										</div>
+									</td>
+								</tr>
+								<% end %>
+							</tbody>
+						</table>
+					</div>
+					<% else %>
+						<div class="alert alert-warning text-center" role="alert">
+						  <i class="fas fa-exclamation-circle"></i> No existe ninguna notificación.
+						</div>
+					<% end %>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script>
+  $(document).ready(function(){
+    $('[data-toggle="popover"]').popover()
+  });
+</script>

@@ -1,0 +1,104 @@
+<header>
+	<nav>
+		<div class="logo-agd">
+			<img src="http://cacaomovil.com/static/image/logo/vaina-cacao.png" alt="vaina-cacao">
+			CacaoMovil
+		</div>
+		<div class="menu-navbar">
+			<div class="item-navi">
+				<a data-toggle="collapse" href="#menu-ti-coll-bl">Biblioteca</a>
+				<div class="menu-ti collapse" id="menu-ti-coll-bl">
+					<ul>
+						<li><%= link_to "Temática", admin_categories_path %></li>
+						<li><a data-toggle="collapse" href="#menu-ti-coll-bl-s">Guías > </a>
+							<div class="collapse" id="menu-ti-coll-bl-s">
+								<ul>
+									<li><%= link_to "Guías", admin_guides_path %></li>
+									<li><%= link_to "Archivos", admin_upload_files_path %></li>
+								</ul>
+							</div>
+						</li>
+						<li><%= link_to "Secciones", admin_sections_path %></li>
+						<li><%= link_to "Articulos", admin_articles_path %></li>
+					</ul>
+				</div>
+			</div>
+			<div class="item-navi">
+				<a data-toggle="collapse" href="#menu-ti-coll-ap">Apps</a>
+				<div class="menu-ti collapse" id="menu-ti-coll-ap">
+					<ul>
+						<li><%= link_to "Categorias", admin_category_apps_path %></li>
+						<li><%= link_to "Apps", admin_apps_path %></li>
+					</ul>
+				</div>
+			</div>
+			<div class="item-navi">
+				<%= link_to "<i class='fa fa-commenting-o fa-2x i-m'></i> <span>Notificaciones</span>".html_safe, admin_massive_notifications_path %>
+			</div>
+			<div class="item-navi float-right">
+				<a data-toggle="collapse" href="#menu-ti-coll-lo"><%= current_user.email %></a>
+				<div class="menu-ti collapse" id="menu-ti-coll-lo" style="width: 16% !important; padding: 0 !important;">
+					<ul>
+						<li><%= link_to "Cerrar sesión", destroy_user_session_path, method: :delete %></li>
+						<li><%= link_to "Configuración", "/admin/home" %></li>
+					</ul>
+				</div>
+			</div>	
+		</div>
+	</nav>
+</header>
+<style>
+	header{
+		background: #4ab04c;
+		width: 100%;
+		height: 65px;
+		padding: 20px;
+	}
+	.logo-agd img{
+		width: 20px;
+	}
+	.logo-agd{
+		float: left;
+		width: 15%;
+		color: #fff;
+		font-weight: bold;
+	}
+	.menu-ti{
+		position: fixed;
+		z-index: 3000;
+    background: #fff;
+    width: 20%;
+    border-radius: 2px;
+    padding: 10px;
+    -webkit-box-shadow: 0px 0px 5px 0px rgba(51,51,51,1);
+		-moz-box-shadow: 0px 0px 5px 0px rgba(51,51,51,1);
+		box-shadow: 0px 0px 5px 0px rgba(51,51,51,1);
+	}
+	.menu-ti ul{
+		list-style: none;
+	}
+	.menu-ti ul li a{
+		display: block;
+		padding: 20px 0;
+	}
+	.menu-navbar .item-navi{
+		float: left;
+		padding: 0 20px;
+	}
+	.menu-navbar .item-navi a{
+		color: #fff;
+		text-decoration: none;
+		cursor: pointer;
+	}
+	.menu-ti ul li a{
+		color: #333 !important;
+	}
+</style>
+<script>
+	$("#ap").click(function(){
+		$("#menu-ti-coll-bl").removeClass('show');
+	});
+	$("#bl").click(function(){
+		$("#menu-ti-coll-ap").removeClass('show');
+	});
+</script>

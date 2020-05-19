@@ -1,0 +1,8 @@
+<% @article.upload_files.each do |file| %>
+	<%= link_to "<i class='fas fa-#{file.get_icon}'></i> #{file.name}.#{file.file_type}".html_safe, file.file_upload.url, class: "btn btn-raised btn-block btn-download" %>
+<% end %>
+<style>
+	.btn-download{
+		text-transform: none;
+	}
+</style>

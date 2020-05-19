@@ -1,0 +1,17 @@
+<div id="filter_collapse" class="collapse">
+	<div class="row">
+		<div class="col-md-12">
+			<%= simple_form_for :filter, url: admin_articles_path, method: :get do |f| %>
+				<div class="form-group mx-sm-3 mb-2 text-left">
+			  <%= f.input :guide, label: false, collection: Guide.all, prompt: "-- Selecciona una guia --", input_html: { class: "form-control" } %>
+				</div>
+			  <%= f.button :button, class: "btn btn-raised btn-info btn-sm mb-2" do %>
+					<i class="fas fa-search"></i> Buscar
+			  <% end %>
+			<% end %>
+		</div>
+	</div>
+</div>
+<script>
+	$('form.filter').addClass("form-inline")
+</script>

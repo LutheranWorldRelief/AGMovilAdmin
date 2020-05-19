@@ -1,0 +1,23 @@
+<div class="col-md-3">
+	<%= link_to "<i class='fas fa-plus'></i> Nueva notificación".html_safe, new_admin_massive_notification_path, class: "btn btn-raised btn-primary btn-sm"%>	
+	<br><br>
+	<div class="card">
+    <div class="card-header with-border">
+      <h3 class="box-title">Opciones</h3>
+    </div>
+    <div class="card-body no-padding">
+      <ul class="nav nav-pills nav-stacked">
+        <li>
+					<%= link_to "<i class='fa fa-file-text-o'></i> Borradores".html_safe, admin_massive_notifications_path, class:"btn btn-primary btn-raised" %>
+				</li>
+				<li>
+					<%= link_to "<i class='fa fa-envelope-o'></i> Enviados".html_safe, admin_massive_notifications_path(sent: true), class:"btn btn-primary btn-raised" %>
+				</li>
+				<br>
+				<li>
+					<%= link_to "<i class='fa fa-trash-o'></i> Papelera".html_safe, admin_massive_notifications_path(trash: true), class: "btn btn-primary btn-raised" %>
+				</li>
+      </ul>
+    </div>
+  </div>
+</div>

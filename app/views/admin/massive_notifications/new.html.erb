@@ -1,0 +1,31 @@
+<div class="container">
+	<section class="content-header">
+	  <h1>
+	    Notificaciones -
+	    <small> Nueva notificación</small>
+	  </h1>
+	</section>
+	<br><br>
+	<div class="row">
+		<%= render partial: "admin/massive_notifications/partials/filter" %>
+		<div class="col-md-9">
+			<div class="box box-solid">
+				<div class="box-body">
+					<%= simple_form_for @massive_notification, url: admin_massive_notifications_path, method: :post do |f| %>
+						<div class="form-group">
+							<%= f.input :title, label: "Titulo", input_html: { class: "form-control", maxlength: "50" } %>
+						</div>
+						<div class="form-group">
+							<%= f.input :message, label: "Mensaje", input_html: { class: "form-control", maxlength: "160" } %>
+						</div>
+						<div class="form-group">
+							<%= f.input :big_picture, as: :file,  label: "Imagen de fondo", input_html: { class: "form-control" } %>
+						</div>
+						<%= f.submit "Guardar", class: "btn btn-primary" %>
+						<%= link_to "Cancelar", admin_massive_notifications_path, class: "btn bg-navy" %>
+					<% end %>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

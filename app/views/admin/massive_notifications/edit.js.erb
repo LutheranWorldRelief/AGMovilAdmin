@@ -1,0 +1,9 @@
+<% if @send == true %>
+$("#config").html("<%= j render partial: 'users/massive_notifications/partials/send_button' %>");
+$(".save").css("display", "none");
+$("input").attr("disabled", "disabled");
+$("textarea").attr("disabled", "disabled");
+$(".select2").prop("disabled", true);
+$(".see-end").html("");
+<% end %>
+$("#big_picture").html("<%= j render partial: 'users/massive_notifications/partials/big_picture' %>");
