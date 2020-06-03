@@ -5,11 +5,17 @@ INSTALACIÓN DE CACAO MÓVIL
 
 2. Ejecutar el comando export RAILS_ENV=production
 
-3. Se crean los directorios de Unicorn
+3. Se modifican las llaves secretas con 
+  > bundle exec rake secret
+  
+4. Se modifica la información de la base de datos según el servidor
+  > config/database.yml
+
+5. Se crean los directorios de Unicorn
   > mkdir pids    
   > mkdir sockets
 
-4. Se crea el archivo de configuración
+6. Se crea el archivo de configuración
   > nano config/unicorn_cacaomovil.rb
 
 Dentro de la configuración colocaremos
@@ -28,7 +34,7 @@ Dentro de la configuración colocaremos
     timeout 30
 
 
-5. Modificamos la configuración de Nginx
+7. Modificamos la configuración de Nginx
   >
     upstream cacaomovil {
         server unix:/[RUTA DEL PROYECTO]/sockets/unicorn.cacao.sock fail_timeout=0;
@@ -54,4 +60,4 @@ Dentro de la configuración colocaremos
         keepalive_timeout 10;
     }
 
-6. Reiniciamos Nginx
+8. Reiniciamos Nginx
