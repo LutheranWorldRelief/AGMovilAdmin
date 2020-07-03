@@ -18,7 +18,12 @@ Rails.application.routes.draw do
         post "update_order_article"
       end
     end
-    resources :articles
+    #resources :articles
+    resources :articles do
+      collection do
+        post 'get_sections'
+      end
+    end
     resources :upload_files
     resources :apps
     resources :category_apps

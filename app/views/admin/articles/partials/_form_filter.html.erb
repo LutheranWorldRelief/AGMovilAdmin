@@ -2,8 +2,14 @@
 	<div class="row">
 		<div class="col-md-12">
 			<%= simple_form_for :filter, url: admin_articles_path, method: :get do |f| %>
-				<div class="form-group mx-sm-3 mb-2 text-left">
-			  <%= f.input :guide, label: false, collection: Guide.all, prompt: "-- Selecciona una guia --", input_html: { class: "form-control" } %>
+				<div class="form-group col-md-8 text-left">
+			  <div class="col-md-6">
+			  	<%= f.input :guide, label: false, collection: Guide.all, prompt: "-- Selecciona una guia --", input_html: { class: "form-control", id:"guide" } %>
+			  </div>
+			  <div class="col-md-5 offset-md-1">
+			  	<%#= f.input :guide, label: false, collection: Section.all, prompt: "-- Selecciona una sección --", input_html: { class: "form-control", id:"section"} %>
+			  	<select name="section[id]" id="section" class="form-control" required="required"></select>
+			  </div>
 				</div>
 			  <%= f.button :button, class: "btn btn-raised btn-info btn-sm mb-2" do %>
 					<i class="fas fa-search"></i> Buscar
@@ -14,4 +20,28 @@
 </div>
 <script>
 	$('form.filter').addClass("form-inline")
+	$("#guide").on('change', function(){
+      $("#section").empty();
+      category = $(this).val();
+      if(category.length == 0){
+        alert("Primero debe elegir una guia");
+      }else{
+        $.ajax({
+          url: "/admin/articles/get_sections",
+          method: 'POST',
+          data: {"guide_id": category},
+          success: function(subcategories){
+            if(subcategories.length > 0){
+              $.each(subcategories, function(i, subcategory){
+                $("#section").append("<option value="+subcategory.id+">"+subcategory.name+"</option>");
+              });
+            }else{
+              $("option:gt(0)", "#section").remove();
+              $("a:gt(0)","#result").remove();
+            }
+            $("#section").trigger("chosen:updated");          
+          }
+        });
+      }
+    });
 </script>

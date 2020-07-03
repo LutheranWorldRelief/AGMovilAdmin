@@ -12,7 +12,7 @@
 			  <div class="card-body">
 					<% if @guides.size > 0 %>
 					<div class="table-responsive">
-						<table class="table table-sm table-hover">
+						<table class="table table-sm table-hover" id="datatable">
 						  <thead>
 						    <tr>
 						    	<th></th>
@@ -58,3 +58,12 @@
 	</div>
 </div>
 <div id="modal-guide"></div>
+<script>
+  $(document).ready(function(){
+    $("#datatable").DataTable({
+      "language": {
+        "url": "//cdn.datatables.net/plug-ins/1.10.19/i18n/Spanish.json"
+      }
+    });
+  });
+</script>

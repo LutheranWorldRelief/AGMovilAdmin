@@ -6,7 +6,8 @@ class Admin::ArticlesController < Admin::ApplicationController
 		@articles = Article.all.order(section_id: :asc).paginate(:page => params[:page], :per_page => 10)
 		if params[:filter]
 			if params[:filter][:guide].present?
-				@articles = @articles.where(section_id: Section.where(guide_id: params[:filter][:guide].to_i))
+				#@articles = @articles.where(section_id: Section.where(guide_id: params[:filter][:guide].to_i))
+				@articles = @articles.where(section_id: params[:section][:id].to_i)
 			end
 		end
 	end
@@ -51,6 +52,15 @@ class Admin::ArticlesController < Admin::ApplicationController
 		render layout: "application"
 	end
 
+	def get_sections
+		sections = []
+	    find_sections = Section.where(guide_id: params[:guide_id])
+	    find_sections.each do |sc|
+	      sections << {"id": sc.id, "name": sc.name}
+	    end    
+    render json: sections
+	end
+
 	private
 
 		def set_article
@@ -58,6 +68,6 @@ class Admin::ArticlesController < Admin::ApplicationController
 		end
 
 		def article_params
-			params.require(:article).permit(:name, :order, :section_id, :title, :description, :content)
+			params.require(:article).permit(:name, :order, :section_id, :title, :description, :content, :section)
 		end
 end
