@@ -64,12 +64,12 @@ class Admin::MassiveNotificationsController < Admin::ApplicationController
 		end
 		fcm_client = FCM.new("AAAArGmGj_s:APA91bGIqfV6s3WUnXT1zS__8NRWjjyE8SkDFfjfIDsAGTafJpax3t7SwmYmI_ZnxB9Y-jR2vV3dQvZng1ALvXZCSxaWO9mBJ2omC2SrAls0zU4v2oHl3CxJSI_p4SnMbowXh2sPnR3x") # set your FCM_SERVER_KEY
     options = { priority: 'high',
-                data: { message: @massive_notification.title, icon: @massive_notification.big_picture.present? ? "http://agd.codecastle.com.sv"+ @massive_notification.big_picture.url : "" },
+                data: { message: @massive_notification.title, icon: @massive_notification.big_picture.present? ? "https://admin.cacaomovil.com"+ @massive_notification.big_picture.url : "" },
                 notification: { 
                 title: @massive_notification.title,
                 body: @massive_notification.message,
-                image: @massive_notification.big_picture.present? ? "http://agd.codecastle.com.sv"+ @massive_notification.big_picture.url : "" ,
-                icon: @massive_notification.big_picture.present? ? "http://agd.codecastle.com.sv"+ @massive_notification.big_picture.url : "" 
+                image: @massive_notification.big_picture.present? ? "https://admin.cacaomovil.com"+ @massive_notification.big_picture.url : "" ,
+                icon: @massive_notification.big_picture.present? ? "https://admin.cacaomovil.com"+ @massive_notification.big_picture.url : "" 
                 },
                 badge: 1,
                 sound: 'default'
