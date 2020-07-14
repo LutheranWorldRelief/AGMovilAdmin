@@ -29,7 +29,7 @@ class Api::V1::NotificationsController < Api::V1::ApplicationController
 
   def show    
     notification = []
-    notification << {"id": @notification.id, "title": @notification.title, "message": @notification.message, "image": @notification.big_picture.present? ? "http://agd.codecastle.com.sv#{@notification.big_picture.url}" : "" , "date": @notification.created_at.strftime("%d-%m-%Y")}
+    notification << {"id": @notification.id, "title": @notification.title, "message": @notification.message, "image": @notification.big_picture.present? ? "https://admin.cacaomovil.com#{@notification.big_picture.url}" : "" , "date": @notification.created_at.strftime("%d-%m-%Y")}
     render json: {notification: notification}.to_json
   end
 
