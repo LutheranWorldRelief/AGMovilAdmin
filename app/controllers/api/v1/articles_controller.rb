@@ -10,7 +10,7 @@ class Api::V1::ArticlesController < Api::V1::ApplicationController
 		  	:name => article.name, 
 		  	:title => article.title, 
 		  	:description => article.description, 
-			:link => "http://agd.codecastle.com.sv/admin/articles/#{article.slug}",
+			:link => "https://admin.cacaomovil.com/admin/articles/#{article.slug}",
 		  	:content => article.content
 		  }
 		end

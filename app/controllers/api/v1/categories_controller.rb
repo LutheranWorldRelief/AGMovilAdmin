@@ -4,7 +4,7 @@ class Api::V1::CategoriesController < Api::V1::ApplicationController
 		@categories = Category.all.order("id ASC").map do |category|
 		  { :id => category.id, 
 		  	:name => category.name,
-		  	:image => "http://agd.codecastle.com.sv#{category.image.url}",
+		  	:image => "https://admin.cacaomovil.com#{category.image.url}",
 		  	:description => category.description
 		  }
 		end

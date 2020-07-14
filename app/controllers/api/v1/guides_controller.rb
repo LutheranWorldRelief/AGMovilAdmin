@@ -7,7 +7,7 @@ class Api::V1::GuidesController < Api::V1::ApplicationController
 		  { :id => guide.id, 
 		  	:name => guide.name,
 # <<<<<<< HEAD
-		  	:image => "http://agd.codecastle.com.sv#{guide.image.url}",
+		  	:image => "https://admin.cacaomovil.com#{guide.image.url}",
 			:order => guide.order,
 			:archive => guide.upload_files.length == 0 ? false : true
 # =======
@@ -28,7 +28,7 @@ class Api::V1::GuidesController < Api::V1::ApplicationController
 			:archive => @guide.upload_files.length == 0 ? false : true,
 # =======
 # >>>>>>> c1f35f30661f12ff39c06591dc6b04146f37c392
-		  	:image => "http://agd.codecastle.com.sv#{@guide.image.url}",
+		  	:image => "https://admin.cacaomovil.com#{@guide.image.url}",
 		  	:sections => @guide.sections.order(order: :asc).map do |section|
 		  		{
 		  			:id => section.id,
