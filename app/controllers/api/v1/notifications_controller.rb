@@ -12,19 +12,36 @@ class Api::V1::NotificationsController < Api::V1::ApplicationController
     end
     render json: {token: ud.token, message: msg}
   end
+
   def index
+    user_key = params[:token]
+    delete_notifications = DeleteNotification.where(user_key: user_key)
+    @nt = []
+    @ntx = ""
     if MassiveNotification.where(status:"sended").count > 0 
-      @nt = MassiveNotification.where(status: "sended").order(created_at: :desc).map do |notimassive|
-        { 
-          :id => notimassive.id, 
-          :title => notimassive.title,
-          :message => notimassive.message.truncate(27)
-        }
+    MassiveNotification.where(status: "sended").order(created_at: :desc).each do |notimassive|
+      unless delete_notifications.include?(notimassive.id)
+        @nt << { :id => notimassive.id, :title => notimassive.title, :message => notimassive.message.truncate(27) }
       end
-    else
-      @nt = "No se encontraron resultados"
     end
-    render json: { notifications: @nt }.to_json
+    else
+      @ntx = "No se encontraron resultados"
+    end
+    render json: { notifications: (@nt.count > 0 ? @nt : @ntx), count:  (@nt.count > 0 ? @nt.count : 0)  }.to_json
+  end
+
+  def delete_notification
+    user_key = params[:token]
+    notification_id = params[:notification_id]
+    message = ""
+    unless DeleteNotification.where(user_key: user_key, notification_id: notification_id).count > 0
+      DeleteNotification.create!(user_key: user_key, notification_id: notification_id)
+      message = "Has eliminado la notificación exitosamente"
+    else
+      message = "Ha sucedido un error, por favor ponte en contacto con soporte. Error #206"
+    end
+    
+    render json: {notification: notification_id, message: message}
   end
 
   def show    

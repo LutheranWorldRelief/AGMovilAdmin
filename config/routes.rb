@@ -45,6 +45,7 @@ Rails.application.routes.draw do
         collection do 
           post "send" => 'notifications#send'
           post "save_token" => 'notifications#save_token'
+          post "delete" => 'notifications#delete_notification'
         end
       end
       resources :categories, only: [:index]

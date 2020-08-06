@@ -1,0 +1,2 @@
+class DeleteNotification < ApplicationRecord
+end

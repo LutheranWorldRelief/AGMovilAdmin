@@ -35,6 +35,6 @@ class Api::V1::AppsController < Api::V1::ApplicationController
     		doc.search('.pid-8894-pcp').each do |pcp|
       			@pcp = pcp.content
     		end
-    		render json: {cocoa_price: @price, pc: @pc, pcp: @pcp}
+    		render json: {cocoa_price: "$#{@price}", pc: @pc, pcp: @pcp}
    	 end
 end
