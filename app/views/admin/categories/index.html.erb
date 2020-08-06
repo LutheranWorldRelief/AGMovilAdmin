@@ -15,6 +15,7 @@
 						  <thead>
 						    <tr>
 						      <th></th>
+						      <th>Orden</th>
 						      <th>Nombre</th>
 						      <th>Descripción</th>
 						      <th>Guias asignadas</th>
@@ -25,6 +26,7 @@
 						  	<% @categories.each do |category| %>
 									<tr>
 										<td><%= image_tag category.image.url.nil? ? "" : category.image.url, class: "img-fluid mx-auto d-block", width: "55px", height: "55px"%></td>
+										<td><%= category.cat_order %></td>
 										<td><%= category.name %></td>
 										<td><%= category.description %></td>
 										<td><%= category.guides.size %></td>
