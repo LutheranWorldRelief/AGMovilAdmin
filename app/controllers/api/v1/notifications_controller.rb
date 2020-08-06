@@ -15,7 +15,7 @@ class Api::V1::NotificationsController < Api::V1::ApplicationController
 
   def index
     user_key = params[:token]
-    delete_notifications = DeleteNotification.where(user_key: user_key).pluck(:id)
+    delete_notifications = DeleteNotification.where(user_key: user_key).pluck(:notification_id)
     @nt = []
     @ntx = ""
     if MassiveNotification.where(status:"sended").count > 0 
