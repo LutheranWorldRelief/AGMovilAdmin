@@ -15,15 +15,15 @@ class Api::V1::NotificationsController < Api::V1::ApplicationController
 
   def index
     user_key = params[:token]
-    delete_notifications = DeleteNotification.where(user_key: user_key)
+    delete_notifications = DeleteNotification.where(user_key: user_key).pluck(:id)
     @nt = []
     @ntx = ""
     if MassiveNotification.where(status:"sended").count > 0 
-    MassiveNotification.where(status: "sended").order(created_at: :desc).each do |notimassive|
-      unless delete_notifications.include?(notimassive.id)
-        @nt << { :id => notimassive.id, :title => notimassive.title, :message => notimassive.message.truncate(27) }
+      MassiveNotification.where(status: "sended").order(created_at: :desc).each do |notimassive|
+        unless delete_notifications.include?(notimassive.id)
+          @nt << { :id => notimassive.id, :title => notimassive.title, :message => notimassive.message.truncate(27) }
+        end
       end
-    end
     else
       @ntx = "No se encontraron resultados"
     end
