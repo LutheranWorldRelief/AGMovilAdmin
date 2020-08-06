@@ -2,7 +2,7 @@ class Admin::CategoriesController < Admin::ApplicationController
 	before_action :set_category, only: [ :show, :edit, :update, :destroy ]
 	def index
 		@active_item_7 = true
-		@categories = Category.all.paginate(:page => params[:page], :per_page => 10)
+		@categories = Category.all.paginate(:page => params[:page], :per_page => 10).order("cat_order ASC")
 	end
 
 	def new
