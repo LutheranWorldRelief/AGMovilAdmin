@@ -5,7 +5,7 @@ class Api::V1::UploadFilesController < Api::V1::ApplicationController
 		@files = @guide.upload_files.map do |file|
 			{
 				:id => file.id, 
-				:url => "http://agd.codecastle.com.sv#{file.file_upload.url}",
+				:url => "https://admin.cacaomovil.com#{file.file_upload.url}",
 				:description => file.description,
 				:file_name => file.name,
 				:file_type => file.file_type,
@@ -16,7 +16,6 @@ class Api::V1::UploadFilesController < Api::V1::ApplicationController
 	end
 
 	private
-
 		def set_guide
 			@guide = Guide.find(params[:id])
 		end

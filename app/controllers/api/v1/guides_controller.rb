@@ -6,13 +6,9 @@ class Api::V1::GuidesController < Api::V1::ApplicationController
 		@guides = @category.guides.order(order: :asc).map do |guide|
 		  { :id => guide.id, 
 		  	:name => guide.name,
-# <<<<<<< HEAD
 		  	:image => "https://admin.cacaomovil.com#{guide.image.url}",
-			:order => guide.order,
-			:archive => guide.upload_files.length == 0 ? false : true
-# =======
-#		  	:image => "http://agd.codecastle.com.sv#{guide.image.url}"
-# >>>>>>> c1f35f30661f12ff39c06591dc6b04146f37c392
+				:order => guide.order,
+				:archive => guide.upload_files.length == 0 ? false : true
 		  }
 		end
 		render json: { guides: @guides }.to_json
@@ -23,11 +19,8 @@ class Api::V1::GuidesController < Api::V1::ApplicationController
 		  { 
 		  	:id => @guide.id, 
 		  	:name => @guide.name,
-# <<<<<<< HEAD
-			:order => @guide.order,
-			:archive => @guide.upload_files.length == 0 ? false : true,
-# =======
-# >>>>>>> c1f35f30661f12ff39c06591dc6b04146f37c392
+				:order => @guide.order,
+				:archive => @guide.upload_files.length == 0 ? false : true,
 		  	:image => "https://admin.cacaomovil.com#{@guide.image.url}",
 		  	:sections => @guide.sections.order(order: :asc).map do |section|
 		  		{
@@ -59,8 +52,5 @@ class Api::V1::GuidesController < Api::V1::ApplicationController
 		def set_guide
 			@guide = Guide.find(params[:id])
 		end
-# <<<<<<< HEAD
+
 end
-#=======
-#end
-# >>>>>>> c1f35f30661f12ff39c06591dc6b04146f37c392

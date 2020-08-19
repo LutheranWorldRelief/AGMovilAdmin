@@ -1,12 +1,12 @@
 class Admin::ArticlesController < Admin::ApplicationController
 	before_action :set_article, only: [ :show, :edit, :update, :destroy ]
 	skip_before_action :authenticate_user!, only: [ :show ]
+	
 	def index
 		@active_item_4 = true
 		@articles = Article.all.order(section_id: :asc).paginate(:page => params[:page], :per_page => 10)
 		if params[:filter]
 			if params[:filter][:guide].present?
-				#@articles = @articles.where(section_id: Section.where(guide_id: params[:filter][:guide].to_i))
 				@articles = @articles.where(section_id: params[:section][:id].to_i)
 			end
 		end
@@ -19,7 +19,7 @@ class Admin::ArticlesController < Admin::ApplicationController
 	def create
 		@article = Article.new(article_params)
 		if @article.save
-			@article.content = @article.content.gsub("/uploads/ckeditor/pictures/","http://agd.codecastle.com.sv/uploads/ckeditor/pictures/")
+			@article.content = @article.content.gsub("/uploads/ckeditor/pictures/","https://admin.cacaomovil.com/uploads/ckeditor/pictures/")
 			@article.save
 			redirect_to admin_articles_path, notice: "Guardado..."
 		else
@@ -32,7 +32,7 @@ class Admin::ArticlesController < Admin::ApplicationController
 
 	def update
 		if @article.update(article_params)
-			@article.content = @article.content.gsub("/uploads/ckeditor/pictures/","http://agd.codecastle.com.sv/uploads/ckeditor/pictures/")
+			@article.content = @article.content.gsub("/uploads/ckeditor/pictures/","https://admin.cacaomovil.com/uploads/ckeditor/pictures/")
 			@article.save
 			redirect_to admin_articles_path, notice: "Actualizado..."
 		else
