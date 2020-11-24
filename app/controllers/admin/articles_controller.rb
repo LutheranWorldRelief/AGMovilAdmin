@@ -32,7 +32,7 @@ class Admin::ArticlesController < Admin::ApplicationController
 
 	def update
 		if @article.update(article_params)
-			@article.content = @article.content.gsub("/uploads/ckeditor/pictures/","https://admin.cacaomovil.com/uploads/ckeditor/pictures/")
+			@article.content = @article.content.gsub("src=\"/uploads/ckeditor/pictures/","src=\"http://admin.cacaomovil.com/uploads/ckeditor/pictures/")
 			@article.save
 			redirect_to admin_articles_path, notice: "Actualizado..."
 		else
