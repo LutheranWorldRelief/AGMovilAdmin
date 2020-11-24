@@ -19,7 +19,7 @@ class Admin::ArticlesController < Admin::ApplicationController
 	def create
 		@article = Article.new(article_params)
 		if @article.save
-			@article.content = @article.content.gsub("/uploads/ckeditor/pictures/","https://admin.cacaomovil.com/uploads/ckeditor/pictures/")
+			@article.content = @article.content.gsub("src=\"/uploads/ckeditor/pictures/","src=\"http://admin.cacaomovil.com/uploads/ckeditor/pictures/")
 			@article.save
 			redirect_to admin_articles_path, notice: "Guardado..."
 		else
