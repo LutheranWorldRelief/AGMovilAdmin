@@ -1,0 +1,2 @@
+class ReadNotification < ApplicationRecord
+end

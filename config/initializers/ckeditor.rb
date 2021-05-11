@@ -6,6 +6,11 @@ Ckeditor.setup do |config|
   # available as additional gems.
   require 'ckeditor/orm/active_record'
 
+  Ckeditor.setup do |config|
+    # //cdn.ckeditor.com/<version.number>/<distribution>/ckeditor.js
+    config.cdn_url = "//cdn.ckeditor.com/4.16.0/standard/ckeditor.js"
+  end
+
   # Allowed image file types for upload.
   # Set to nil or [] (empty array) for all file types
   # By default: %w(jpg jpeg png gif tiff)
@@ -44,7 +49,13 @@ Ckeditor.setup do |config|
   # To reduce the asset precompilation time, you can limit plugins and/or languages to those you need:
   # By default: nil (no limit)
   # config.assets_languages = ['en', 'uk']
-  # config.assets_plugins = ['image', 'smiley']
+  #config.assets_plugins = ['image', 'smiley']
+  #handle custom addons
+  assets_root =  Rails.root.join('public','assets')
+  ckeditor_plugins_root = assets_root.join('ckeditor','plugins')
+  %w(openlink sourcedialog).each do |ckeditor_plugin|
+    Ckeditor.assets += Dir[ckeditor_plugins_root.join(ckeditor_plugin, '**', '*.js')].map {|x| x.sub(assets_root.to_path, '').sub(/^\/+/, '')}
+  end
 
   # CKEditor CDN
   # More info here http://cdn.ckeditor.com/
