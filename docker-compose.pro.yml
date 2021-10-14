@@ -7,8 +7,8 @@ services:
     ports:
       - "5440:5432"
     volumes:
-      - ./storage:/tmp/backup
       - db:/var/lib/postgresql/data
+      - ./storage:/var/lib/postgresql/backup
 
   ruby:
     build:
