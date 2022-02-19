@@ -27,15 +27,22 @@ class Api::V1::AppsController < Api::V1::ApplicationController
     @pcp = ""
 
     doc = Nokogiri::HTML(open('https://es.investing.com/commodities/us-cocoa'))
-    doc.search('.pid-8894-last').each do |price|
-    	@price = price.content
+
+		# doc.search('.pid-8894-last').each do |price|
+    doc.search('[data-test="instrument-price-last"]').each do |instrument_price_last|
+    	@price = instrument_price_last.content
     end
-    doc.search('.pid-8894-pc').each do |pc|
-    	@pc = pc.content
+
+		# doc.search('.pid-8894-pc').each do |pc|
+    doc.search('[data-test="instrument-price-change"]').each do |instrument_price_change|
+    	@pc = instrument_price_change.content
+		end
+
+    # doc.search('.pid-8894-pcp').each do |pcp|
+    doc.search('[data-test="instrument-price-change-percent"]').each do |instrument_price_change_percent|
+    	@pcp = instrument_price_change_percent.content.gsub(/[\(\)]/, "")
     end
-    doc.search('.pid-8894-pcp').each do |pcp|
-    	@pcp = pcp.content
-    end
-    render json: {cocoa_price: "$#{@price}", pc: @pc, pcp: @pcp}
+
+		render json: {cocoa_price: "$#{@price}", pc: @pc, pcp: @pcp}
   end
 end
