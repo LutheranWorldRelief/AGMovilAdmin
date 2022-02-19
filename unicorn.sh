@@ -1,11 +1,11 @@
 #!/bin/bash
-# rails db:migrate
-# rails assets:precompile
+rails db:migrate
+rails assets:precompile
 
 if [ "${RAILS_ENV}" = "development" ]
 then
   echo "Starting rails"
-  rm -f tmp/pids/server.pid && rails db:migrate && rails s -p 3000 -b '0.0.0.0'
+  rm -f tmp/pids/server.pid && rails s -p 3000 -b '0.0.0.0'
 fi
 
 if [ "${RAILS_ENV}" = "production" ]
