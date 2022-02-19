@@ -27,6 +27,16 @@ services:
     depends_on:
       - db
 
+  php:
+    image: lwr:yii2-74-apache-ga
+    ports:
+      - '83:80'
+    volumes:
+      - ../cacaomovil-web/:/app
+      - ./public/uploads/:/var/www/uploads
+    env_file:
+      - .env.php
+
 volumes:
   db:
   cache:
