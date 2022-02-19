@@ -14,5 +14,4 @@ Rails.application.config.assets.paths << Rails.root.join('node_modules')
 Rails.application.config.assets.precompile += %w( 
 																									admin_dashboard.css
 																									admin_dashboard.js
-                                                  ckeditor/config.js
 																								)

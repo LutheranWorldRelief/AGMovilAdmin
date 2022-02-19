@@ -15,10 +15,8 @@ class Api::V1::NotificationsController < Api::V1::ApplicationController
 
   def index
     user_key = params[:token]
-    rnc = ReadNotification.where(user_key: user_key).count rescue 0
     delete_notifications = DeleteNotification.where(user_key: user_key).pluck(:notification_id)
     @nt = []
-    count = 0
     @ntx = ""
     if MassiveNotification.where(status:"sended").count > 0 
       MassiveNotification.where(status: "sended").order(created_at: :desc).each do |notimassive|
@@ -29,8 +27,7 @@ class Api::V1::NotificationsController < Api::V1::ApplicationController
     else
       @ntx = "No se encontraron resultados"
     end
-    count = (@nt.count - rnc) rescue 0
-    render json: { notifications: (@nt.count > 0 ? @nt : @ntx), count: count }.to_json
+    render json: { notifications: (@nt.count > 0 ? @nt : @ntx), count:  (@nt.count > 0 ? @nt.count : 0)  }.to_json
   end
 
   def delete_notification
@@ -49,9 +46,7 @@ class Api::V1::NotificationsController < Api::V1::ApplicationController
 
   def show    
     notification = []
-    user_key = params[:token]
     notification << {"id": @notification.id, "title": @notification.title, "message": @notification.message, "image": @notification.big_picture.present? ? "https://admin.cacaomovil.com#{@notification.big_picture.url}" : "" , "date": @notification.created_at.strftime("%d-%m-%Y")}
-    ReadNotification.create(user_key: user_key, notification_id: @notification_id)
     render json: {notification: notification}.to_json
   end
 
