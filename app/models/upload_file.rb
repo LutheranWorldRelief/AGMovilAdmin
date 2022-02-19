@@ -2,7 +2,7 @@
 #
 # Table name: upload_files
 #
-#  id          :bigint(8)        not null, primary key
+#  id          :bigint           not null, primary key
 #  file_upload :string
 #  order       :integer          default(0)
 #  created_at  :datetime         not null
@@ -10,7 +10,7 @@
 #  description :text
 #  name        :string
 #  file_type   :integer
-#  guide_id    :bigint(8)
+#  guide_id    :bigint
 #
 
 class UploadFile < ApplicationRecord

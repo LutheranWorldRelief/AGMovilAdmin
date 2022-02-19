@@ -2,16 +2,17 @@
 #
 # Table name: articles
 #
-#  id          :bigint(8)        not null, primary key
-#  name        :string
-#  title       :string
-#  description :text
-#  content     :text
-#  order       :integer          default(0)
-#  section_id  :bigint(8)
-#  created_at  :datetime         not null
-#  updated_at  :datetime         not null
-#  slug        :string
+#  id              :bigint           not null, primary key
+#  name            :string
+#  title           :string
+#  description     :text
+#  content         :text
+#  order           :integer          default(0)
+#  section_id      :bigint
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#  slug            :string
+#  content_base_64 :text
 #
 
 class Article < ApplicationRecord

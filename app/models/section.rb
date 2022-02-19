@@ -2,10 +2,10 @@
 #
 # Table name: sections
 #
-#  id         :bigint(8)        not null, primary key
+#  id         :bigint           not null, primary key
 #  name       :string
 #  order      :integer          default(0)
-#  guide_id   :bigint(8)
+#  guide_id   :bigint
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  slug       :string
