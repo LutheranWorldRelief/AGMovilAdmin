@@ -14,6 +14,7 @@ ActiveRecord::Schema.define(version: 2021_02_09_182236) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+  enable_extension "unaccent"
 
   create_table "apps", force: :cascade do |t|
     t.string "name"
