@@ -9,7 +9,7 @@ class Api::V1::ArticlesController < Api::V1::ApplicationController
 		  	:title => article.title, 
 		  	:description => article.description, 
 				:link => "https://admin.cacaomovil.com/admin/articles/#{article.slug}",
-		  	:content => article.content
+		  	:content => article.content_base_64
 		  }
 		end
 		render json: { articles: @articles }.to_json
