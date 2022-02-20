@@ -15,6 +15,8 @@ gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'cancan', '~> 1.6', '>= 1.6.10'
+gem 'base64', '~> 0.1.1'         # used to convert img files to base64 string
+gem 'mimemagic', '~> 0.4.3'      # used to get the mimetype of files
 
 #Notificaciones
 gem 'fcm'
@@ -22,7 +24,7 @@ gem 'fcm'
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'pry', '~> 0.11.3'
-  gem 'annotate', '~> 2.7', '>= 2.7.4'
+  gem 'annotate', '~> 2.7', '>= 2.7.4' # generates models documentation
 end
 
 group :development do
