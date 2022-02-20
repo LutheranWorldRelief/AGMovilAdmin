@@ -19,8 +19,6 @@ class Admin::ArticlesController < Admin::ApplicationController
 	def create
 		@article = Article.new(article_params)
 		if @article.save
-			@article.content = @article.content.gsub("src=\"/uploads/ckeditor/pictures/","src=\"https://admin.cacaomovil.com/uploads/ckeditor/pictures/")
-			@article.save
 			redirect_to admin_articles_path, notice: "Guardado..."
 		else
 			redirect_to admin_articles_path, alert: "Ocurrio un error..."
@@ -32,8 +30,6 @@ class Admin::ArticlesController < Admin::ApplicationController
 
 	def update
 		if @article.update(article_params)
-			@article.content = @article.content.gsub("src=\"/uploads/ckeditor/pictures/","src=\"https://admin.cacaomovil.com/uploads/ckeditor/pictures/")
-			@article.save
 			redirect_to admin_articles_path, notice: "Actualizado..."
 		else
 			redirect_to admin_articles_path, alert: "Ocurrio un error..."
