@@ -31,8 +31,6 @@ services:
     build:
       context: .
       dockerfile: ./Dockerfilephp
-    environment:
-      TZ: America/Managua
     ports:
       - '83:80'
     volumes:
