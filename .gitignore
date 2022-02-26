@@ -30,6 +30,7 @@ unicorn-kill.sh
 
 .env.pg
 .env.ruby
+.env.php
 
 yarn.lock
 # Ignore master key for decrypting credentials and more.
