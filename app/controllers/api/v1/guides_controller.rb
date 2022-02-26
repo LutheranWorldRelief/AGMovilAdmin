@@ -33,7 +33,7 @@ class Api::V1::GuidesController < Api::V1::ApplicationController
 		  					:name => article.name,
 		  					:title => article.title,
 								:description => article.description,
-								:content => article.content,
+								:content => article.content_base_64,
 								:order => article.order
 		  				}
 		  			end
