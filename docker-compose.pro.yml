@@ -28,11 +28,16 @@ services:
       - db
 
   php:
-    image: lwr:yii2-74-apache-ga
+    build:
+      context: .
+      dockerfile: ./Dockerfilephp
+    environment:
+      TZ: America/Managua
     ports:
       - '83:80'
     volumes:
       - ../cacaomovil-web/:/app
+      - ../cacaomovil-web/php/custom.ini:/usr/local/etc/php/conf.d/custom.ini
       - ./public/uploads/:/var/www/uploads
     env_file:
       - .env.php

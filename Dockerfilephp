@@ -1,0 +1,31 @@
+# https://github.com/yiisoft/yii2-docker
+FROM yiisoftware/yii2-php:7.4-apache
+
+ENV ACCEPT_EULA=Y
+
+# acp cache
+RUN pecl install apcu
+RUN echo "extension=apcu.so" > /usr/local/etc/php/conf.d/pecl-apcu.ini
+
+# imagick
+RUN docker-php-ext-enable \
+    imagick
+
+# memcache
+ENV MEMCACHED_DEPS libmemcached-dev git zlib1g-dev unzip
+
+# https://github.com/php-memcached-dev/php-memcached/issues/408#issuecomment-447528462
+RUN set -ex \
+    && apt-get update \
+    && apt-get install -y $MEMCACHED_DEPS \
+    && DEBIAN_FRONTEND=noninteractive apt-get install -y libmemcached-dev \
+    && rm -rf /var/lib/apt/lists/* \
+    && MEMCACHED="`mktemp -d`" \
+    && curl -skL https://github.com/php-memcached-dev/php-memcached/archive/master.tar.gz | tar zxf - --strip-components 1 -C $MEMCACHED \
+    && docker-php-ext-configure $MEMCACHED \
+    && docker-php-ext-install $MEMCACHED \
+    && rm -rf $MEMCACHED
+
+
+# Set time from Managua
+RUN cp /usr/share/zoneinfo/America/Managua /etc/localtime
