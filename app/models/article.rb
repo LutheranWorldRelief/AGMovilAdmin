@@ -59,8 +59,6 @@ class Article < ApplicationRecord
         img_mimetype = MimeMagic.by_magic(img_file).type # => "image/jpeg"
         img_base_64 = Base64.encode64(img_file.read)
 
-        puts "#{src} | #{img_mimetype}"
-
         # generating the base64 string used that will be used in src attribute
         src_img_base_64 = "data:#{img_mimetype};base64,#{img_base_64}"
 
