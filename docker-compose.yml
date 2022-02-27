@@ -16,13 +16,15 @@ services:
       context: .
       dockerfile: ./Dockerfile
     command: ./unicorn.sh
+    stdin_open: true
+    tty: true
+    ports:
+      - "3030:3000"
+    env_file:
+      - .env.ruby
     volumes:
       - .:/app
       - cache:/tmp
-    env_file:
-      - .env.ruby
-    ports:
-      - "3030:3000"
     depends_on:
       - db
 

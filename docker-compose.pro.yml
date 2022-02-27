@@ -1,11 +1,12 @@
 version: '3.1'
 services:
   db:
-    image: postgres:12.5
+    image: postgres:12.3
+    working_dir: /var/lib/postgresql/backup
     env_file:
       - .env.pg
     ports:
-      - "5440:5432"
+      - "5435:5432"
     volumes:
       - db:/var/lib/postgresql/data
       - ./storage:/var/lib/postgresql/backup
@@ -14,13 +15,13 @@ services:
     build:
       context: .
       dockerfile: ./Dockerfile
+    command: ./unicorn.sh
+    stdin_open: true
+    tty: true
     ports:
       - "3030:3000"
     env_file:
       - .env.ruby
-    command: ./unicorn.sh
-    stdin_open: true
-    tty: true
     volumes:
       - .:/app
       - cache:/tmp
